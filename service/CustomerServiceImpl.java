@@ -18,15 +18,11 @@ public class CustomerServiceImpl implements CustomerService {
 		Customer newCustomer=customerRepository.save(customer);
 		return newCustomer;
 	}
-
+    
 	@Override
 	public Customer getById(int customerId) {
 		Optional<Customer> customerById=customerRepository.findById(customerId);
 		Customer customer=customerById.get();
 		return customer ;
 	}
-	
-
-	
-
 }

@@ -12,20 +12,21 @@ import com.evehiclemanagementsystem.service.CustomerService;
 
 @RestController
 public class CustomerController {
-	
+
 	@Autowired
-	private CustomerService customerService ;
-	
+	private CustomerService customerService;
+
 	@PostMapping("/customer/save")
 	public Customer addCustomer(@RequestBody Customer customer) {
-		
-		Customer newCustomer= customerService.saveCustomer(customer);
+
+		Customer newCustomer = customerService.saveCustomer(customer);
 		return newCustomer;
 	}
+
 	@GetMapping("/customer/find/{customerId}")
 	public Customer fetchCustomerById(@PathVariable("customerId") int customerId) {
-		Customer customer=customerService.getById(customerId);
+		Customer customer = customerService.getById(customerId);
 		return customer;
 	}
-	
+
 }

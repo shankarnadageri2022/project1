@@ -11,41 +11,39 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="service_request_tbl")
+@Table(name = "service_request_tbl")
 public class ServiceRequest {
-	
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="service_request_id")
+	@Column(name = "service_request_id")
 	private int serviceRequestId;
-	
+
 	@ManyToOne
 	private Customer customer;
-	
+
 	@ManyToOne
-	private Service service;
-	
-	@Column(name="category")
+	private ServiceList service;
+
+	@Column(name = "category")
 	private String category;
-	
-	@Column(name="model")
+
+	@Column(name = "model")
 	private String model;
-	
-	@Column(name="vehicleName")
+
+	@Column(name = "vehicleName")
 	private String vehicleName;
-	
-	@Column(name="brand")
+
+	@Column(name = "brand")
 	private String brand;
-	
-	@Column(name="date")
+
+	@Column(name = "date")
 	private LocalDateTime date;
-	
-	
-	@Column(name="status")
+
+	@Column(name = "status")
 	private String status;
-	
-	@Column(name="totalAmount")
+
+	@Column(name = "totalAmount")
 	private double totalAmount;
 
 	public int getServiceRequestId() {
@@ -64,11 +62,11 @@ public class ServiceRequest {
 		this.customer = customer;
 	}
 
-	public Service getService() {
+	public ServiceList getService() {
 		return service;
 	}
 
-	public void setService(Service service) {
+	public void setService(ServiceList service) {
 		this.service = service;
 	}
 
@@ -127,9 +125,5 @@ public class ServiceRequest {
 	public void setTotalAmount(double totalAmount) {
 		this.totalAmount = totalAmount;
 	}
-
-	
-	
-	
 
 }

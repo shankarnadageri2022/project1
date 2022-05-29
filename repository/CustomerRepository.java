@@ -9,4 +9,5 @@ import com.evehiclemanagementsystem.entity.Customer;
 public interface CustomerRepository extends JpaRepository<Customer,Integer> {
  
 //public Customer updateCredential(String customerUserName,String customerPassword);
+	
 }

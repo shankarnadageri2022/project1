@@ -13,22 +13,22 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="service_list_tbl")
-public class Service {
-	
+@Table(name = "service_list_tbl")
+public class ServiceList {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="service_id")
+	@Column(name = "service_id")
 	private int serviceId;
-	
-	@Column(name="service_name")
+
+	@Column(name = "service_name")
 	private String serviceName;
-	
-	@Column(name="service_price")
+
+	@Column(name = "service_price")
 	private double price;
-	
-	@OneToMany(mappedBy="service",cascade = CascadeType.ALL)
-    private List<ServiceRequest> serviceRequests=new ArrayList<>();
+
+	@OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
+	private List<ServiceRequest> serviceRequests = new ArrayList<>();
 
 	public int getServiceId() {
 		return serviceId;
@@ -61,5 +61,5 @@ public class Service {
 	public void setServiceRequests(List<ServiceRequest> serviceRequests) {
 		this.serviceRequests = serviceRequests;
 	}
-	
+
 }
