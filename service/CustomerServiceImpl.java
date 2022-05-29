@@ -1,5 +1,7 @@
 package com.evehiclemanagementsystem.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,14 @@ public class CustomerServiceImpl implements CustomerService {
 		Customer newCustomer=customerRepository.save(customer);
 		return newCustomer;
 	}
+
+	@Override
+	public Customer getById(int customerId) {
+		Optional<Customer> customerById=customerRepository.findById(customerId);
+		Customer customer=customerById.get();
+		return customer ;
+	}
+	
 
 	
 

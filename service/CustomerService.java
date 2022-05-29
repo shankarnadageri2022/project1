@@ -7,4 +7,9 @@ public interface CustomerService {
 //	public Customer saveCustomer(Customer customer);
 
 	public Customer saveCustomer(Customer customer);
+	
+	public Customer getById(int id);
+	
+	
+	
 }
