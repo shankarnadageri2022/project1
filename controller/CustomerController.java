@@ -28,5 +28,17 @@ public class CustomerController {
 		Customer customer = customerService.getById(customerId);
 		return customer;
 	}
+	@GetMapping("/customer/recoverPassword/{customerId}")
+	public String recoverPassword(@PathVariable int customerId) {
+		String customerPassword=customerService.recoverPassword(customerId);
+		return customerPassword;
+	}
+	@PostMapping("/customer/update")
+	public Customer updatedProfile(@RequestBody Customer customer) {
+		Customer updatedProfile=customerService.updateProfile(customer);
+		
+		return updatedProfile;
+	}
+	
 
 }
