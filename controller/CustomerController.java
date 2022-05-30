@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.evehiclemanagementsystem.entity.Customer;
+import com.evehiclemanagementsystem.model.ChangePasswordRequest;
 import com.evehiclemanagementsystem.service.CustomerService;
 
 @RestController
@@ -40,5 +41,11 @@ public class CustomerController {
 		return updatedProfile;
 	}
 	
+	@PostMapping("/customer/changePassword")
+	public String changePassword(@RequestBody ChangePasswordRequest changePasswordRequest ) {
+		String response=customerService.changePassword(changePasswordRequest.getCustomerId(), changePasswordRequest.getOldPassword(),changePasswordRequest.getNewPassword());
+		return response;
+	}
+
 
 }

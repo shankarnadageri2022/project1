@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.evehiclemanagementsystem.entity.Customer;
+import com.evehiclemanagementsystem.exception.CustomerNotFoundException;
+import com.evehiclemanagementsystem.exception.PasswordMisMatchException;
 import com.evehiclemanagementsystem.repository.CustomerRepository;
 
 @Service
@@ -21,8 +23,11 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer getById(int customerId) {
+	public Customer getById(int customerId) throws CustomerNotFoundException {
 		Optional<Customer> customerById = customerRepository.findById(customerId);
+		if (customerById.isEmpty()) {
+			throw new CustomerNotFoundException(customerId + " customer not found");
+		}
 		Customer customer = customerById.get();
 		return customer;
 	}
@@ -44,10 +49,19 @@ public class CustomerServiceImpl implements CustomerService {
 		return customer1;
 	}
 
-//	@Override
-//	public String changePassword(Customer customer) {
-//		Customer customer3 = customerRepository.getById(customerId);
-//		customer3.setCustomerPassword(null);
-//		return null;
-//	}
+	@Override
+	public String changePassword(int customerId, String oldPassword, String newPassword) {
+		
+		Optional<Customer> customerById = customerRepository.findById(customerId);
+		if (customerById.isEmpty()) {
+			throw new CustomerNotFoundException(customerId + " customer not found");
+		}
+		
+		Customer customer = customerById.get();
+		if(!customer.getCustomerPassword().equals(oldPassword)) {
+			throw new PasswordMisMatchException("old password not matching with new password");
+		}
+		customer.setCustomerPassword(newPassword);
+		return "Password Updated Successfully.";
+	}
 }
