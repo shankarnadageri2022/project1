@@ -61,7 +61,18 @@ public class CustomerServiceImpl implements CustomerService {
 		if(!customer.getCustomerPassword().equals(oldPassword)) {
 			throw new PasswordMisMatchException("old password not matching with new password");
 		}
-		customer.setCustomerPassword(newPassword);
+		
+		Customer newCustomer=new Customer();
+		newCustomer.setCustomerId(customer.getCustomerId());
+		newCustomer.setCustomerAddress(customer.getCustomerAddress());
+		newCustomer.setCustomerEmail(customer.getCustomerEmail());
+		newCustomer.setCustomerName(customer.getCustomerName());
+		newCustomer.setCustomerPhone(customer.getCustomerPhone());
+		newCustomer.setCustomerUserName(customer.getCustomerUserName());
+		newCustomer.setCustomerPassword(newPassword);
+		
+		customerRepository.save(newCustomer);
+		
 		return "Password Updated Successfully.";
 	}
 }

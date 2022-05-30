@@ -27,8 +27,8 @@ public class ServiceList {
 	@Column(name = "service_price")
 	private double price;
 
-	@OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
-	private List<ServiceRequest> serviceRequests = new ArrayList<>();
+//	@OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
+//	private List<ServiceRequest> serviceRequests = new ArrayList<>();
 
 	public int getServiceId() {
 		return serviceId;
@@ -54,12 +54,12 @@ public class ServiceList {
 		this.price = price;
 	}
 
-	public List<ServiceRequest> getServiceRequests() {
-		return serviceRequests;
-	}
-
-	public void setServiceRequests(List<ServiceRequest> serviceRequests) {
-		this.serviceRequests = serviceRequests;
-	}
+//	public List<ServiceRequest> getServiceRequests() {
+//		return serviceRequests;
+//	}
+//
+//	public void setServiceRequests(List<ServiceRequest> serviceRequests) {
+//		this.serviceRequests = serviceRequests;
+//	}
 
 }
