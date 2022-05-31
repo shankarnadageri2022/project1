@@ -1,5 +1,8 @@
 package com.evehiclemanagementsystem.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +18,9 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "customer_id")
 	private int customerId;
-
+    
+//	private List<ServiceRequest> serviceRequest=new ArrayList<>();
+	
 	@Column(name = "customer_name")
 	private String customerName;
 

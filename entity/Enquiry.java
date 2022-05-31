@@ -59,15 +59,15 @@ public class Enquiry {
 		this.status = status;
 	}
 
-	public Customer getCustomer() {
-		return customer;
-	}
+//	public Customer getCustomer() {
+//		return customer;
+//	}
+//
+//	public void setCustomer(Customer customer) {
+//		this.customer = customer;
+//	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "customer_id")
-	private Customer customer;
+//	@ManyToOne
+//	@JoinColumn(name = "customer_id")
+//	private Customer customer;
 }
