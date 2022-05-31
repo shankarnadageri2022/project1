@@ -13,12 +13,5 @@ public interface CustomerService {
 	public Customer updateProfile(Customer customer);
 	
 	public String changePassword(int customerId,String oldPassword,String newPassword);
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

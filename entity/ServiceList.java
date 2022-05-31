@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "service_list_tbl")
@@ -23,12 +24,10 @@ public class ServiceList {
 
 	@Column(name = "service_name")
 	private String serviceName;
-
+	
+    @Positive
 	@Column(name = "service_price")
 	private double price;
-
-//	@OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
-//	private List<ServiceRequest> serviceRequests = new ArrayList<>();
 
 	public int getServiceId() {
 		return serviceId;
@@ -54,12 +53,5 @@ public class ServiceList {
 		this.price = price;
 	}
 
-//	public List<ServiceRequest> getServiceRequests() {
-//		return serviceRequests;
-//	}
-//
-//	public void setServiceRequests(List<ServiceRequest> serviceRequests) {
-//		this.serviceRequests = serviceRequests;
-//	}
 
 }

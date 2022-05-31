@@ -8,16 +8,21 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "enquiry_tbl")
 public class Enquiry {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "enquiry_id")
 	private int enquiryId;
 
+	@NotNull(message = "query is required")
 	@Column(name = "query")
 	private String query;
 
@@ -26,6 +31,11 @@ public class Enquiry {
 
 	@Column(name = "status")
 	private String status;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="customer_id")
+	private Customer customer;
 
 	public int getEnquiryId() {
 		return enquiryId;
@@ -59,15 +69,12 @@ public class Enquiry {
 		this.status = status;
 	}
 
-//	public Customer getCustomer() {
-//		return customer;
-//	}
-//
-//	public void setCustomer(Customer customer) {
-//		this.customer = customer;
-//	}
+	public Customer getCustomer() {
+		return customer;
+	}
 
-//	@ManyToOne
-//	@JoinColumn(name = "customer_id")
-//	private Customer customer;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
 }

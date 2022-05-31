@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.evehiclemanagementsystem.entity.Enquiry;
+import com.evehiclemanagementsystem.model.EnquiryRequest;
 import com.evehiclemanagementsystem.service.EnquiryService;
 
 @RestController
@@ -17,9 +18,9 @@ public class EnquiryController {
 	private EnquiryService enquiryService;
 
 	@PostMapping("/enquiry/save")
-	public Enquiry addEnquiry(@RequestBody Enquiry enquiry) {
+	public Enquiry addEnquiry(@RequestBody EnquiryRequest enquiryRequest) {
 
-		Enquiry newEnquiry = enquiryService.saveEnquiry(enquiry);
+		Enquiry newEnquiry = enquiryService.saveEnquiry(enquiryRequest.getEnquiryText(),enquiryRequest.getCustomerId());
 
 		return newEnquiry;
 	}

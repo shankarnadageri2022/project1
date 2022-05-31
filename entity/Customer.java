@@ -8,25 +8,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "customer_tbl")
 public class Customer {
 	@Id
-
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "customer_id")
 	private int customerId;
     
-//	private List<ServiceRequest> serviceRequest=new ArrayList<>();
-	
+	@NotNull(message = "customer name is required")
 	@Column(name = "customer_name")
 	private String customerName;
-
+   
+	
 	@Column(name = "customer_phone")
 	private long customerPhone;
-
+    
+	@Email
 	@Column(name = "customer_email")
 	private String customerEmail;
 
@@ -38,7 +43,13 @@ public class Customer {
 
 	@Column(name = "customer_password")
 	private String customerPassword;
-
+	@JsonIgnore
+	@OneToMany(mappedBy="customer")
+	private List<ServiceRequest> serviceRequest=new ArrayList<>();
+	@JsonIgnore
+	@OneToMany(mappedBy="customer")
+	private List<Enquiry> enquiries=new ArrayList<>();
+	
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -94,5 +105,25 @@ public class Customer {
 	public void setCustomerPassword(String customerPassword) {
 		this.customerPassword = customerPassword;
 	}
+
+	public List<ServiceRequest> getServiceRequest() {
+		return serviceRequest;
+	}
+
+	public void setServiceRequest(List<ServiceRequest> serviceRequest) {
+		this.serviceRequest = serviceRequest;
+	}
+
+	public List<Enquiry> getEnquiries() {
+		return enquiries;
+	}
+
+	public void setEnquiries(List<Enquiry> enquiries) {
+		this.enquiries = enquiries;
+	}
+
+	
+
+
 
 }

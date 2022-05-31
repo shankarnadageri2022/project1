@@ -7,8 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "service_request_tbl")
@@ -18,13 +22,8 @@ public class ServiceRequest {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "service_request_id")
 	private int serviceRequestId;
-
-	@ManyToOne
-	private Customer customer;
-
-	@ManyToOne
-	private ServiceList service;
-
+    
+	@NotNull(message ="category is required")
 	@Column(name = "category")
 	private String category;
 
@@ -39,12 +38,20 @@ public class ServiceRequest {
 
 	@Column(name = "date")
 	private LocalDateTime date;
+	
+
+	@Column(name="service_id")
+	private int serviceListId;
 
 	@Column(name = "status")
 	private String status;
 
 	@Column(name = "totalAmount")
 	private double totalAmount;
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="customer_id")
+	private Customer customer;
 
 	public int getServiceRequestId() {
 		return serviceRequestId;
@@ -52,22 +59,6 @@ public class ServiceRequest {
 
 	public void setServiceRequestId(int serviceRequestId) {
 		this.serviceRequestId = serviceRequestId;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	public ServiceList getService() {
-		return service;
-	}
-
-	public void setService(ServiceList service) {
-		this.service = service;
 	}
 
 	public String getCategory() {
@@ -110,6 +101,14 @@ public class ServiceRequest {
 		this.date = date;
 	}
 
+	public int getServiceListId() {
+		return serviceListId;
+	}
+
+	public void setServiceListId(int serviceListId) {
+		this.serviceListId = serviceListId;
+	}
+
 	public String getStatus() {
 		return status;
 	}
@@ -126,4 +125,17 @@ public class ServiceRequest {
 		this.totalAmount = totalAmount;
 	}
 
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	
+	
+	
+	
+
+	
 }

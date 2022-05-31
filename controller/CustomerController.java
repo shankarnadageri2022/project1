@@ -21,25 +21,24 @@ public class CustomerController {
 	@PostMapping("/customer/save")
 	public Customer addCustomer(@RequestBody Customer customer) {
 
-		Customer newCustomer = customerService.saveCustomer(customer);
-		return newCustomer;
+
+		return customerService.saveCustomer(customer);
 	}
 
 	@GetMapping("/customer/find/{customerId}")
 	public Customer fetchCustomerById(@PathVariable("customerId") int customerId) {
-		Customer customer = customerService.getById(customerId);
-		return customer;
+		
+		return customerService.getById(customerId);
 	}
 	@GetMapping("/customer/recoverPassword/{customerId}")
 	public String recoverPassword(@PathVariable int customerId) {
-		String customerPassword=customerService.recoverPassword(customerId);
-		return customerPassword;
+	
+		return customerService.recoverPassword(customerId);
 	}
 	@PostMapping("/customer/update")
 	public Customer updatedProfile(@RequestBody Customer customer) {
-		Customer updatedProfile=customerService.updateProfile(customer);
 		
-		return updatedProfile;
+		return customerService.updateProfile(customer);
 	}
 	
 	@PutMapping("/customer/changePassword")
